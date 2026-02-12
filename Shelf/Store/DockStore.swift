@@ -57,7 +57,7 @@ final class DockStore {
     func addItem(to dockID: UUID, item: DockItem) {
         guard let index = docks.firstIndex(where: { $0.id == dockID }) else { return }
         // Allow multiple spacers/separators/snippets, but deduplicate apps and links
-        if item.type == .spacer || item.type == .separator || item.type == .snippet {
+        if item.type == .spacer || item.type == .separator || item.type == .snippet || item.type == .stickyNote {
             docks[index].items.append(item)
             save()
             return
@@ -99,6 +99,18 @@ final class DockStore {
     
     func addSnippet(to dockID: UUID, name: String, content: String) {
         addItem(to: dockID, item: .snippet(name: name, content: content))
+    }
+    
+    func addStickyNote(to dockID: UUID, name: String = "Sticky Note") {
+        addItem(to: dockID, item: .stickyNote(name: name))
+    }
+    
+    func updateStickyNoteContent(dockID: UUID, itemID: UUID, content: String) {
+        guard let dockIdx = docks.firstIndex(where: { $0.id == dockID }),
+              let itemIdx = docks[dockIdx].items.firstIndex(where: { $0.id == itemID })
+        else { return }
+        docks[dockIdx].items[itemIdx].snippetContent = content
+        save()
     }
     
     func moveItem(in dockID: UUID, fromID: UUID, toID: UUID) {

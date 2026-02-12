@@ -17,6 +17,7 @@ struct DockItem: Identifiable, Codable, Equatable {
         case snippet
         case spacer
         case separator
+        case stickyNote
     }
     
     var appURL: URL {
@@ -27,6 +28,10 @@ struct DockItem: Identifiable, Codable, Equatable {
         switch type {
         case .separator, .spacer:
             return NSImage()
+        case .stickyNote:
+            let img = NSImage(systemSymbolName: "note.text", accessibilityDescription: "Sticky Note")
+                ?? NSImage()
+            return img
         case .snippet:
             let img = NSImage(systemSymbolName: "doc.on.clipboard", accessibilityDescription: "Snippet")
                 ?? NSImage()
@@ -80,5 +85,9 @@ struct DockItem: Identifiable, Codable, Equatable {
     
     static func snippet(name: String, content: String) -> DockItem {
         DockItem(appPath: "", displayName: name, type: .snippet, snippetContent: content)
+    }
+    
+    static func stickyNote(name: String = "Sticky Note") -> DockItem {
+        DockItem(appPath: "", displayName: name, type: .stickyNote, snippetContent: "")
     }
 }

@@ -11,8 +11,10 @@ import AppKit
 final class AppState {
     let store = DockStore()
     lazy var windowController = DockWindowController(store: store)
+    lazy var stickyNoteController = StickyNoteWindowController(store: store)
     
     func showAllDocks() {
+        windowController.stickyNoteController = stickyNoteController
         for dock in store.docks where dock.isVisible {
             windowController.showDock(dock)
         }

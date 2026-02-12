@@ -45,6 +45,7 @@ struct VisualEffectBackground: NSViewRepresentable {
 struct FloatingDockView: View {
     let dockID: UUID
     @Bindable var store: DockStore
+    var stickyNoteController: StickyNoteWindowController?
     
     @State private var hoveredItemID: UUID?
     @State private var isHoveringDock = false
@@ -94,6 +95,9 @@ struct FloatingDockView: View {
             }
             Button("Add Separator") {
                 store.addSeparator(to: dockID)
+            }
+            Button("Add Sticky Note") {
+                store.addStickyNote(to: dockID)
             }
         }
         .popover(isPresented: $showingAddLink) {
@@ -203,7 +207,10 @@ struct FloatingDockView: View {
             isHovered: hoveredItemID == item.id,
             proximityScale: 1.0,
             orientation: dock.orientation,
-            onRemove: { store.removeItem(from: dock.id, itemID: item.id) }
+            onRemove: { store.removeItem(from: dock.id, itemID: item.id) },
+            onStickyNoteTap: item.type == .stickyNote ? {
+                stickyNoteController?.toggleNote(itemID: item.id, dockID: dockID)
+            } : nil
         )
         .zIndex(hoveredItemID == item.id ? 10 : 0)
         .opacity(draggingItemID == item.id ? 0.3 : 1.0)

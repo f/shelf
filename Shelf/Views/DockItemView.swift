@@ -27,6 +27,7 @@ struct DockItemView: View {
     let proximityScale: Double
     let orientation: DockConfig.Orientation
     let onRemove: () -> Void
+    var onStickyNoteTap: (() -> Void)? = nil
     
     @State private var isPressed = false
     
@@ -71,6 +72,8 @@ struct DockItemView: View {
                     onRemove()
                 }
             }
+        case .stickyNote:
+            iconView
         case .app, .folder, .link, .snippet:
             iconView
         }
@@ -79,7 +82,7 @@ struct DockItemView: View {
     private let maxScale: Double = 1.4
     
     private var needsIconMask: Bool {
-        item.type == .link || item.type == .snippet
+        item.type == .link || item.type == .snippet || item.type == .stickyNote
     }
     
     private var iconView: some View {
@@ -184,6 +187,8 @@ struct DockItemView: View {
     
     private func launch() {
         switch item.type {
+        case .stickyNote:
+            onStickyNoteTap?()
         case .snippet:
             pasteSnippet()
         case .link:

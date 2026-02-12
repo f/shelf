@@ -6,6 +6,7 @@ final class DockWindowController {
     private var windows: [UUID: NSPanel] = [:]
     private let store: DockStore
     private var observations: [UUID: NSObjectProtocol] = [:]
+    var stickyNoteController: StickyNoteWindowController?
     
     init(store: DockStore) {
         self.store = store
@@ -73,7 +74,7 @@ final class DockWindowController {
     private func makeDockHostingView(for dock: DockConfig, panel: NSPanel) -> DockHostingView<FloatingDockView> {
         let dockID = dock.id
         let hostingView = DockHostingView(
-            rootView: FloatingDockView(dockID: dockID, store: store)
+            rootView: FloatingDockView(dockID: dockID, store: store, stickyNoteController: stickyNoteController)
         )
         hostingView.wantsLayer = true
         hostingView.layer?.backgroundColor = .clear
