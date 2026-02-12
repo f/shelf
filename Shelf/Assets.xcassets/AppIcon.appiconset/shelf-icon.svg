@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6C5CE7"/>
+      <stop offset="100%" stop-color="#4834D4"/>
+    </linearGradient>
+    <linearGradient id="shelfGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#E8E8F0" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="itemGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#EE5A24"/>
+    </linearGradient>
+    <linearGradient id="itemGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0ABDE3"/>
+      <stop offset="100%" stop-color="#2475B0"/>
+    </linearGradient>
+    <linearGradient id="itemGrad3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1DD1A1"/>
+      <stop offset="100%" stop-color="#10AC84"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+    <filter id="innerShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- macOS squircle background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="228" ry="228" fill="url(#bg)"/>
+  
+  <!-- Subtle top highlight -->
+  <rect x="0" y="0" width="1024" height="512" rx="228" ry="228" fill="white" opacity="0.08"/>
+  
+  <!-- Shelf bar (the main shelf) -->
+  <rect x="140" y="520" width="744" height="56" rx="12" fill="url(#shelfGrad)" filter="url(#shadow)"/>
+  
+  <!-- Shelf bracket left -->
+  <rect x="160" y="520" width="16" height="120" rx="8" fill="url(#shelfGrad)" opacity="0.85"/>
+  
+  <!-- Shelf bracket right -->
+  <rect x="848" y="520" width="16" height="120" rx="8" fill="url(#shelfGrad)" opacity="0.85"/>
+  
+  <!-- Bottom shelf bar -->
+  <rect x="140" y="700" width="744" height="48" rx="10" fill="url(#shelfGrad)" opacity="0.5"/>
+  
+  <!-- Items on the shelf -->
+  <!-- Item 1 - red/orange app -->
+  <rect x="220" y="370" width="140" height="140" rx="32" fill="url(#itemGrad1)" filter="url(#innerShadow)"/>
+  <circle cx="290" cy="440" r="35" fill="white" opacity="0.9"/>
+  <polygon points="278,420 278,460 310,440" fill="url(#itemGrad1)"/>
+  
+  <!-- Item 2 - blue app (center) -->
+  <rect x="420" y="340" width="160" height="170" rx="36" fill="url(#itemGrad2)" filter="url(#innerShadow)"/>
+  <rect x="460" y="390" width="80" height="10" rx="5" fill="white" opacity="0.9"/>
+  <rect x="470" y="415" width="60" height="10" rx="5" fill="white" opacity="0.6"/>
+  <rect x="460" y="440" width="80" height="10" rx="5" fill="white" opacity="0.4"/>
+  
+  <!-- Item 3 - green app -->
+  <rect x="640" y="380" width="130" height="130" rx="30" fill="url(#itemGrad3)" filter="url(#innerShadow)"/>
+  <circle cx="705" cy="445" r="30" fill="white" opacity="0.9"/>
+  <rect x="692" y="430" width="26" height="26" rx="4" fill="url(#itemGrad3)" transform="rotate(45,705,443)"/>
+  
+  <!-- Small dots at bottom (like dock indicators) -->
+  <circle cx="290" cy="670" r="8" fill="white" opacity="0.7"/>
+  <circle cx="500" cy="670" r="8" fill="white" opacity="0.7"/>
+  <circle cx="705" cy="670" r="8" fill="white" opacity="0.4"/>
+</svg>
